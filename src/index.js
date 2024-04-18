@@ -10,18 +10,29 @@ document.getElementById("start-btn").addEventListener("click", startCountdown);
 
 // ITERATION 2: Start Countdown
 
-timer = setInterval(startCountdown, 1000);
-
 function startCountdown() {
+  const timeElement = document.querySelector("#time"); 
+  const button = document.querySelector("#start-btn");
+  button.disabled = true;
+
+
   console.log("startCountdown called!");
+
+  timer = setInterval(startCountdown, 1000);
+
+  timer = setInterval(() => {
+    timeElement.textContent = remainingTime;
+  });
 };
 
 // ITERATION 3: Show Toast
+
 function showToast(message) {
   console.log("showToast called!");
 
-  if (remainingTime === 10) {
-    console.log(message);
+  if (remainingTime === 0) {
+    clearInterval(timer);
+    showToast(" Finished!");
   };
 };
 
